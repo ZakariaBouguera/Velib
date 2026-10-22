@@ -1,5 +1,4 @@
 package fr.projetVelin.dto;
-
 public class Station {
     private String name;
     private int bikesAvailable;
