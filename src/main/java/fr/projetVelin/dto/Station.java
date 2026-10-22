@@ -12,7 +12,7 @@ public class Station {
         this.distance = distance;
     }
 
-    // Getters
+
     public String getName() { return name; }
     public int getBikesAvailable() { return bikesAvailable; }
     public int getDocksAvailable() { return docksAvailable; }
