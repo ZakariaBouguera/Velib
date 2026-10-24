@@ -14,9 +14,10 @@
     <ul>
         <li th:each="station : ${stations}">
             <strong th:text="${station.name}">Nom</strong> :
+            (<span th:text="${station.address}">Adresse</span>) :
             <span th:text="${station.distance}">0</span> mètres |
-            Vélos dispo : <span th:text="${station.bikesAvailable}">0</span> |
-            Places libres : <span th:text="${station.docksAvailable}">0</span>
+            Vélos disponible : <span th:text="${station.VeloDisponible}">0</span> |
+            Places libres : <span th:text="${station.BorneDisponible}">0</span>
         </li>
     </ul>
 </div>
