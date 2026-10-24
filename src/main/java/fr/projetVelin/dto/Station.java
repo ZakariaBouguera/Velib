@@ -1,20 +1,33 @@
 package fr.projetVelin.dto;
 public class Station {
     private String name;
-    private int bikesAvailable;
-    private int docksAvailable;
-    private double distance; // en mètres
+    private String address;
+    private int veloDisponible;
+    private int borneDisponible;
+    private double distance;
 
-    public Station(String name, int bikesAvailable, int docksAvailable, double distance) {
+    public Station(String name,String address,  int veloDisponible, int borneDisponible, double distance) {
         this.name = name;
-        this.bikesAvailable = bikesAvailable;
-        this.docksAvailable = docksAvailable;
+        this.address = address;
+        this.veloDisponible = veloDisponible;
+        this.borneDisponible = borneDisponible;
         this.distance = distance;
     }
 
 
-    public String getName() { return name; }
-    public int getBikesAvailable() { return bikesAvailable; }
-    public int getDocksAvailable() { return docksAvailable; }
-    public double getDistance() { return distance; }
+    public String getName() {
+        return name;
+    }
+    public String getAddress() {
+        return address;
+    }
+    public int getVeloDisponible() {
+        return veloDisponible;
+    }
+    public int getBorneDisponible() {
+        return borneDisponible;
+    }
+    public double getDistance() {
+        return distance;
+    }
 }
