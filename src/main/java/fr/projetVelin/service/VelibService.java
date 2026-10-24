@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -29,7 +30,7 @@ public class VelibService {
                 int velosDisponibles = node.path("numbikesavailable").asInt(0);
                 int placesDisponibles = node.path("numdocksavailable").asInt(0);
 
-                JsonNode noeudCoordonnees = node.path("coourdonnees_geo");
+                JsonNode noeudCoordonnees = node.path("coordonnees_geo");
                 double distance = 0.0;
 
                 if (!noeudCoordonnees.isMissingNode()) {
@@ -45,8 +46,15 @@ public class VelibService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        stations.sort(Comparator.comparingDouble(Station::getDistance));
 
-        return stations;
+        List<Station> stationsProches = new ArrayList<>();
+        int limite = Math.min(5, stations.size());
+        for (int i = 0; i < limite; i++) {
+            stationsProches.add(stations.get(i));
+        }
+
+        return stationsProches;
     }
 
     private double calculeDistance(double latitude1, double longitude1, double latitude2, double longitude2) {
