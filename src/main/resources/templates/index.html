@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Velib Simple</title>
+</head>
+<body>
+
+<h1>Mes Stations Vélib'</h1>
+
+<button onclick="getLocation()">Les stations les plus proches</button>
+
+<div th:if="${hasLocation}">
+    <ul>
+        <li th:each="station : ${stations}">
+            <strong th:text="${station.name}">Nom</strong> :
+            <span th:text="${station.distance}">0</span> mètres |
+            Vélos dispo : <span th:text="${station.bikesAvailable}">0</span> |
+            Places libres : <span th:text="${station.docksAvailable}">0</span>
+        </li>
+    </ul>
+</div>
+
+<script>
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                window.location.href = "/?latitude=" + latitude + "&longitude=" + longitude;
+            });
+        } else {
+            alert("La géolocalisation n'est pas supportée.");
+        }
+    }
+</script>
+
+</body>
+</html>
